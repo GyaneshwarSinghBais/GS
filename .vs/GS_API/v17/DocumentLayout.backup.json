@@ -1,0 +1,266 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "G:\\GyanGS1\\GS_API\\GS_API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\controllers\\gs1controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\controllers\\gs1controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\dto\\updatecancellationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\dto\\updatecancellationrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\data\\oradbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\data\\oradbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\dto\\gs1labeldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\dto\\gs1labeldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\dto\\whstockdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\dto\\whstockdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\dto\\gs1masterreceiptmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\dto\\gs1masterreceiptmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\utility\\facoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\utility\\facoperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\dto\\getgsiddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\dto\\getgsiddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\dto\\gsdatadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\dto\\gsdatadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\gs_api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\gs_api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\dto\\warehousemasterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\dto\\warehousemasterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\dto\\suppliermasterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\dto\\suppliermasterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\dto\\itemmasterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\dto\\itemmasterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|g:\\gyangs1\\gs_api\\gs_api\\gs_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{152D715E-EB37-4933-B31B-73CCDCA73C29}|GS_API\\GS_API.csproj|solutionrelative:gs_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UpdateCancellationRequest.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\UpdateCancellationRequest.cs",
+              "RelativeDocumentMoniker": "GS_API\\DTO\\UpdateCancellationRequest.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\UpdateCancellationRequest.cs",
+              "RelativeToolTip": "GS_API\\DTO\\UpdateCancellationRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-03T11:50:38.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Gs1LabelDTO.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\Gs1LabelDTO.cs",
+              "RelativeDocumentMoniker": "GS_API\\DTO\\Gs1LabelDTO.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\Gs1LabelDTO.cs",
+              "RelativeToolTip": "GS_API\\DTO\\Gs1LabelDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T09:06:32.18Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WHStockDTO.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\WHStockDTO.cs",
+              "RelativeDocumentMoniker": "GS_API\\DTO\\WHStockDTO.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\WHStockDTO.cs",
+              "RelativeToolTip": "GS_API\\DTO\\WHStockDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T11:47:55.96Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GS1Controller.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\Controllers\\GS1Controller.cs",
+              "RelativeDocumentMoniker": "GS_API\\Controllers\\GS1Controller.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\Controllers\\GS1Controller.cs",
+              "RelativeToolTip": "GS_API\\Controllers\\GS1Controller.cs",
+              "ViewState": "AgIAACoBAAAAAAAAAAAWwDYBAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T09:19:36.9Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GS1MASTERRECEIPTModel.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\GS1MASTERRECEIPTModel.cs",
+              "RelativeDocumentMoniker": "GS_API\\DTO\\GS1MASTERRECEIPTModel.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\GS1MASTERRECEIPTModel.cs",
+              "RelativeToolTip": "GS_API\\DTO\\GS1MASTERRECEIPTModel.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAA1wAsAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T08:06:36.626Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GsDataDTO.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\GsDataDTO.cs",
+              "RelativeDocumentMoniker": "GS_API\\DTO\\GsDataDTO.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\GsDataDTO.cs",
+              "RelativeToolTip": "GS_API\\DTO\\GsDataDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBMAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T09:45:58.402Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "getGsidDTO.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\getGsidDTO.cs",
+              "RelativeDocumentMoniker": "GS_API\\DTO\\getGsidDTO.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\getGsidDTO.cs",
+              "RelativeToolTip": "GS_API\\DTO\\getGsidDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T08:51:31.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FacOperations.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\Utility\\FacOperations.cs",
+              "RelativeDocumentMoniker": "GS_API\\Utility\\FacOperations.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\Utility\\FacOperations.cs",
+              "RelativeToolTip": "GS_API\\Utility\\FacOperations.cs",
+              "ViewState": "AQIAAKIAAAAAAAAAAAAiwLgAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T06:50:13.177Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OraDbContext.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\Data\\OraDbContext.cs",
+              "RelativeDocumentMoniker": "GS_API\\Data\\OraDbContext.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\Data\\OraDbContext.cs",
+              "RelativeToolTip": "GS_API\\Data\\OraDbContext.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAADwvz8AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T10:57:09.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "WarehouseMasterDTO.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\WarehouseMasterDTO.cs",
+              "RelativeDocumentMoniker": "GS_API\\DTO\\WarehouseMasterDTO.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\WarehouseMasterDTO.cs",
+              "RelativeToolTip": "GS_API\\DTO\\WarehouseMasterDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T09:19:36.808Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SupplierMasterDTO.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\SupplierMasterDTO.cs",
+              "RelativeDocumentMoniker": "GS_API\\DTO\\SupplierMasterDTO.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\SupplierMasterDTO.cs",
+              "RelativeToolTip": "GS_API\\DTO\\SupplierMasterDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAgAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T09:19:36.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ItemMasterDTO.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\ItemMasterDTO.cs",
+              "RelativeDocumentMoniker": "GS_API\\DTO\\ItemMasterDTO.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\DTO\\ItemMasterDTO.cs",
+              "RelativeToolTip": "GS_API\\DTO\\ItemMasterDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T09:19:36.825Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\Program.cs",
+              "RelativeDocumentMoniker": "GS_API\\Program.cs",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\Program.cs",
+              "RelativeToolTip": "GS_API\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T09:19:36.979Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\appsettings.json",
+              "RelativeDocumentMoniker": "GS_API\\appsettings.json",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\appsettings.json",
+              "RelativeToolTip": "GS_API\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-01T09:19:36.98Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GS_API.csproj",
+              "DocumentMoniker": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\GS_API.csproj",
+              "RelativeDocumentMoniker": "GS_API\\GS_API.csproj",
+              "ToolTip": "G:\\GyanGS1\\GS_API\\GS_API\\GS_API\\GS_API.csproj",
+              "RelativeToolTip": "GS_API\\GS_API.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-01T09:19:36.98Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

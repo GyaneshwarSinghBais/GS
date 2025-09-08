@@ -1,0 +1,891 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "GS_API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/GS1/PODetails": {
+      "get": {
+        "tags": [
+          "GS1"
+        ],
+        "parameters": [
+          {
+            "name": "supplierId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SuplierDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SuplierDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SuplierDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GS1/ItemMaster": {
+      "get": {
+        "tags": [
+          "GS1"
+        ],
+        "parameters": [
+          {
+            "name": "itemcode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemMasterDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemMasterDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemMasterDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GS1/SupplierMaster": {
+      "get": {
+        "tags": [
+          "GS1"
+        ],
+        "parameters": [
+          {
+            "name": "supplierId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SupplierMasterDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SupplierMasterDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SupplierMasterDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GS1/WarehouseMaster": {
+      "get": {
+        "tags": [
+          "GS1"
+        ],
+        "parameters": [
+          {
+            "name": "warehouseid",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WarehouseMasterDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WarehouseMasterDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WarehouseMasterDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GS1/getReceiptDetails": {
+      "get": {
+        "tags": [
+          "GS1"
+        ],
+        "parameters": [
+          {
+            "name": "facid",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GsDataDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GsDataDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GsDataDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GS1/GsDataDTOMaster": {
+      "post": {
+        "tags": [
+          "GS1"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GS1MASTERRECEIPTModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GS1MASTERRECEIPTModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GS1MASTERRECEIPTModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GsDataDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GsDataDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GsDataDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GS1/WHStock": {
+      "get": {
+        "tags": [
+          "GS1"
+        ],
+        "parameters": [
+          {
+            "name": "whid",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "itemCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WHStockDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WHStockDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WHStockDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/GS1/InsertGS1LabelData1": {
+      "post": {
+        "tags": [
+          "GS1"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Gs1LabelDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Gs1LabelDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Gs1LabelDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/GS1/InsertGS1LabelData": {
+      "post": {
+        "tags": [
+          "GS1"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Gs1LabelDTO"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Gs1LabelDTO"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Gs1LabelDTO"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/GS1/UpdateGS1LabelCancellationDate": {
+      "post": {
+        "tags": [
+          "GS1"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCancellationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCancellationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCancellationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GS1MASTERRECEIPTModel": {
+        "type": "object",
+        "properties": {
+          "gsrid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ponoid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "itemcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "supplierid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "batchno": {
+            "type": "string",
+            "nullable": true
+          },
+          "mfgdate": {
+            "type": "string",
+            "nullable": true
+          },
+          "expdate": {
+            "type": "string",
+            "nullable": true
+          },
+          "batchqty": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "warehouseid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "entrydate": {
+            "type": "string",
+            "nullable": true
+          },
+          "sscc": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Gs1LabelDTO": {
+        "type": "object",
+        "properties": {
+          "labelID": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "ponoid": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "supplierID": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "wareHouseID": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "gtin": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "ssccNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "batchno": {
+            "type": "string",
+            "nullable": true
+          },
+          "mfgDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "expDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "batchnboxqty": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "labelCreatedate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "cancellationdate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "iscancel": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GsDataDTO": {
+        "type": "object",
+        "properties": {
+          "gsrid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ponoid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "itemcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "supplierid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "batchno": {
+            "type": "string",
+            "nullable": true
+          },
+          "mfgdate": {
+            "type": "string",
+            "nullable": true
+          },
+          "expdate": {
+            "type": "string",
+            "nullable": true
+          },
+          "batchqty": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "warehouseid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "entrydate": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ItemMasterDTO": {
+        "type": "object",
+        "properties": {
+          "categoryId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "itemCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemName": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemType": {
+            "type": "string",
+            "nullable": true
+          },
+          "strength": {
+            "type": "string",
+            "nullable": true
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "itemTypeId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SuplierDTO": {
+        "type": "object",
+        "properties": {
+          "itemCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ponoId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pono": {
+            "type": "string",
+            "nullable": true
+          },
+          "poDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "pipelinePoQty": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "warehouseName": {
+            "type": "string",
+            "nullable": true
+          },
+          "warehouseId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "supplierID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SupplierMasterDTO": {
+        "type": "object",
+        "properties": {
+          "supplierId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "supplierName": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateCancellationRequest": {
+        "type": "object",
+        "properties": {
+          "cancellationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "batchno": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WHStockDTO": {
+        "type": "object",
+        "properties": {
+          "warehouseid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "itemid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "itemcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemname": {
+            "type": "string",
+            "nullable": true
+          },
+          "strength": {
+            "type": "string",
+            "nullable": true
+          },
+          "sku": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemtype": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentstock": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "underqc": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WarehouseMasterDTO": {
+        "type": "object",
+        "properties": {
+          "warehouseid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "warehousename": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
