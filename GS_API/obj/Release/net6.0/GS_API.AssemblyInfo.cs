@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GS_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52c1f99405ffe1a170c455408df977271f9ac6a6")]
 [assembly: System.Reflection.AssemblyProductAttribute("GS_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GS_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

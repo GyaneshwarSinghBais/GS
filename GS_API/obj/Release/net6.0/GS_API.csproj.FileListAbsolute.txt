@@ -667,3 +667,4 @@ G:\GyanGS1\GS_API\GS_API\GS_API\obj\Release\net6.0\staticwebassets.build.json.ca
 G:\GyanGS1\GS_API\GS_API\GS_API\obj\Release\net6.0\staticwebassets.build.endpoints.json
 G:\GyanGS1\GS_API\GS_API\GS_API\obj\Release\net6.0\staticwebassets.upToDateCheck.txt
 G:\GyanGS1\GS_API\GS_API\GS_API\obj\Release\net6.0\GS_API.csproj.Up2Date
+G:\GyanGS1\GS_API\GS_API\GS_API\obj\Release\net6.0\GS_API.sourcelink.json
