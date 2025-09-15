@@ -244,7 +244,7 @@
         }
       }
     },
-    "/api/GS1/GsDataDTOMaster": {
+    "/api/GS1/GsDataDTOMasterBulk": {
       "post": {
         "tags": [
           "GS1"
@@ -253,50 +253,33 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GS1MASTERRECEIPTModel"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GS1MasterReceiptInputDto"
+                }
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/GS1MASTERRECEIPTModel"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GS1MasterReceiptInputDto"
+                }
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/GS1MASTERRECEIPTModel"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/GS1MasterReceiptInputDto"
+                }
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GsDataDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GsDataDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GsDataDTO"
-                  }
-                }
-              }
-            }
+            "description": "Success"
           }
         }
       }
@@ -352,37 +335,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/api/GS1/InsertGS1LabelData1": {
-      "post": {
-        "tags": [
-          "GS1"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Gs1LabelDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Gs1LabelDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Gs1LabelDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
           }
         }
       }
@@ -500,7 +452,7 @@
   },
   "components": {
     "schemas": {
-      "GS1MASTERRECEIPTModel": {
+      "GS1MasterReceiptInputDto": {
         "type": "object",
         "properties": {
           "gsrid": {

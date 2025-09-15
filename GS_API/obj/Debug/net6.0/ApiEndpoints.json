@@ -27,29 +27,19 @@
   },
   {
     "ContainingType": "GS_API.Controllers.GS1Controller",
-    "Method": "GsDataDTOMaster",
-    "RelativePath": "api/GS1/GsDataDTOMaster",
+    "Method": "GsDataDTOMasterBulk",
+    "RelativePath": "api/GS1/GsDataDTOMasterBulk",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "objeReceipt",
-        "Type": "GS_API.DTO.GS1MASTERRECEIPTModel",
+        "Name": "rows",
+        "Type": "System.Collections.Generic.List\u00601[[GS_API.DTO.GS1MasterReceiptInputDto, GS_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[GS_API.DTO.GsDataDTO, GS_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "GS_API.Controllers.GS1Controller",
@@ -62,22 +52,6 @@
       {
         "Name": "rows",
         "Type": "System.Collections.Generic.List\u00601[[GS_API.DTO.Gs1LabelDTO, GS_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "GS_API.Controllers.GS1Controller",
-    "Method": "InsertGS1LabelData1",
-    "RelativePath": "api/GS1/InsertGS1LabelData1",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "GS_API.DTO.Gs1LabelDTO",
         "IsRequired": true
       }
     ],

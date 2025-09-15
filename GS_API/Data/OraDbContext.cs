@@ -29,7 +29,7 @@ namespace GS_API.Data
 
         public DbSet<Gs1LabelDTO> Gs1LabelDbSet { get; set; }
         public DbSet<UpdateCancellationRequest> UpdateCancellationRequestDbSet { get; set; }
-        
+
 
 
 
@@ -57,7 +57,7 @@ namespace GS_API.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-             modelBuilder.Entity<SuplierDTO>().HasNoKey();
+            modelBuilder.Entity<SuplierDTO>().HasNoKey();
             modelBuilder.Entity<ItemMasterDTO>().HasNoKey();
             modelBuilder.Entity<WHStockDTO>().HasNoKey();
             modelBuilder.Entity<Gs1LabelDTO>().HasNoKey();
@@ -73,6 +73,11 @@ namespace GS_API.Data
 
 
             //  modelBuilder.Entity<MasCgmscNocItems>().ToTable("MasCgmscNocItems");
+
+
+            modelBuilder.Entity<GS1MASTERRECEIPTModel>()
+    .Property(p => p.GSRID)
+    .ValueGeneratedOnAdd();
 
 
         }

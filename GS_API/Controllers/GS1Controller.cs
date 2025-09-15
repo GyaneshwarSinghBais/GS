@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 
 namespace GS_API.Controllers
@@ -175,32 +176,100 @@ order by mc.mcid,m.itemcode
 
 
 
+        //[HttpPost("GsDataDTOMaster")]
+        //public async Task<ActionResult<IEnumerable<GsDataDTO>>> GsDataDTOMaster(GS1MASTERRECEIPTModel objeReceipt)
+        //{
+
+        //    try
+        //    {
+        //        FacOperations ob = new FacOperations(_context);
+        //        string validMFGDATE = ob.FormatDate(objeReceipt.MFGDATE);
+        //        string validEXPDATE = ob.FormatDate(objeReceipt.EXPDATE);
+        //        objeReceipt.MFGDATE = validMFGDATE;
+        //        objeReceipt.EXPDATE = validEXPDATE;
+
+
+        //        Int64 recpID = ob.facGetGSRID(); // getReceiptIssueNo(facid);
+
+        //        objeReceipt.GSRID = recpID;
+
+        //        _context.GS1MASTERRECEIPTModelDbSet.Add(objeReceipt);
+        //        _context.SaveChanges();
+        //        // Int64 ffcid = Convert.ToInt64(facid);
+        //        var myObj = "Sucessufully"; // getReceiptDetails(Convert.ToInt64(objeReceipt.WAREHOUSEID));
+        //        return Ok(myObj);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message.ToString());
+        //    }
+        //}
+
+
+
         [HttpPost("GsDataDTOMaster")]
-        public async Task<ActionResult<IEnumerable<GsDataDTO>>> GsDataDTOMaster(GS1MASTERRECEIPTModel objeReceipt)
+        public async Task<IActionResult> GsDataDTOMaster([FromBody] List<GS1MasterReceiptInputDto> rows)
         {
+            if (rows == null || rows.Count == 0)
+                return BadRequest("At least one row is required.");
 
             try
             {
-                FacOperations ob = new FacOperations(_context);
-                string validMFGDATE = ob.FormatDate(objeReceipt.MFGDATE);
-                string validEXPDATE = ob.FormatDate(objeReceipt.EXPDATE);
-                objeReceipt.MFGDATE = validMFGDATE;
-                objeReceipt.EXPDATE = validEXPDATE;
+                _context.ChangeTracker.Clear();
 
+                // Accept these common formats; add/remove as needed
+                string[] formats =
+                {
+            "yyyy-MM-dd", "dd-MM-yyyy", "dd/MM/yyyy",
+            "yyyy/MM/dd", "yyyy-MM-ddTHH:mm:ss", "yyyy-MM-ddTHH:mm:ss.fff"
+        };
 
-                Int64 recpID = ob.facGetGSRID(); // getReceiptIssueNo(facid);
+                DateTime? Parse(string? s)
+                {
+                    if (string.IsNullOrWhiteSpace(s)) return null;
+                    if (DateTime.TryParseExact(s, formats, CultureInfo.InvariantCulture,
+                                               DateTimeStyles.None, out var dt))
+                        return dt.Date;
+                    // fallback: general parse
+                    if (DateTime.TryParse(s, CultureInfo.InvariantCulture, DateTimeStyles.None, out dt))
+                        return dt.Date;
+                    throw new FormatException($"Invalid date: '{s}'. Expected one of: {string.Join(", ", formats)}");
+                }
 
-                objeReceipt.GSRID = recpID;
+                var entities = rows.Select(r => new GS1MASTERRECEIPTModel
+                {
+                    GSRID = 0, // let DB generate
+                    PONOID = r.ponoid,
+                    ITEMCODE = r.itemcode,
+                    SUPPLIERID = r.supplierid,
+                    BATCHNO = r.batchno,
+                    MFGDATE = Parse(r.mfgdate),
+                    EXPDATE = Parse(r.expdate),
+                    BATCHQTY = r.batchqty,
+                    WAREHOUSEID = r.warehouseid,
+                    ENTRYDATE = Parse(r.entrydate) ?? DateTime.UtcNow.Date,
+                    SSCC = r.sscc
+                }).ToList();
 
-                _context.GS1MASTERRECEIPTModelDbSet.Add(objeReceipt);
-                _context.SaveChanges();
-                // Int64 ffcid = Convert.ToInt64(facid);
-                var myObj = "Sucessufully"; // getReceiptDetails(Convert.ToInt64(objeReceipt.WAREHOUSEID));
-                return Ok(myObj);
+                using var tx = await _context.Database.BeginTransactionAsync();
+                await _context.GS1MASTERRECEIPTModelDbSet.AddRangeAsync(entities);
+                var inserted = await _context.SaveChangesAsync();
+                await tx.CommitAsync();
+
+                return Ok(new
+                {
+                    message = $"Inserted {inserted} row(s).",
+                    inserted,
+                    ids = entities.Select(e => e.GSRID).ToList()
+                });
+            }
+            catch (DbUpdateException ex)
+            {
+                return BadRequest($"Failed to insert: {ex.GetBaseException().Message}");
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message.ToString());
+                return BadRequest($"Failed to insert: {ex.Message}");
             }
         }
 
@@ -262,48 +331,48 @@ group by WAREHOUSEID,ITEMID, ITEMCODE, ITEMNAME, STRENGTH,SKU,CATEGORY, ITEMTYPE
 
 
 
-        [HttpPost("InsertGS1LabelData1")]
-        public async Task<IActionResult> InsertGS1LabelData1([FromBody] Gs1LabelDTO dto)
-        {
-            if (dto == null) return BadRequest("Payload required.");
+//        [HttpPost("InsertGS1LabelData1")]
+//        public async Task<IActionResult> InsertGS1LabelData1([FromBody] Gs1LabelDTO dto)
+//        {
+//            if (dto == null) return BadRequest("Payload required.");
 
-            const string sql = @"
-INSERT INTO TBLGS1LABELDATA
-    (labelID, PONOID, SupplierID, WareHouseID, GTIN, Itemcode, SSCCNumber, Batchno, MFGDate, EXPDate, BATCHNBOXQTY, LabelCreatedate, entrydate, CANCELLATIONDATE, ISCANCEL)
-VALUES
-    (:labelID, :PONOID, :SupplierID, :WareHouseID, :GTIN, :Itemcode, :SSCCNumber, :Batchno, :MFGDate, :EXPDate, :BATCHNBOXQTY, :LabelCreatedate, :entrydate, :CANCELLATIONDATE, :ISCANCEL)";
+//            const string sql = @"
+//INSERT INTO TBLGS1LABELDATA
+//    (labelID, PONOID, SupplierID, WareHouseID, GTIN, Itemcode, SSCCNumber, Batchno, MFGDate, EXPDate, BATCHNBOXQTY, LabelCreatedate, entrydate, CANCELLATIONDATE, ISCANCEL)
+//VALUES
+//    (:labelID, :PONOID, :SupplierID, :WareHouseID, :GTIN, :Itemcode, :SSCCNumber, :Batchno, :MFGDate, :EXPDate, :BATCHNBOXQTY, :LabelCreatedate, :entrydate, :CANCELLATIONDATE, :ISCANCEL)";
 
 
-            // further code to prepare parameters and execute the insert
-            var parameters = new List<OracleParameter>
-            {
-                new OracleParameter(":labelID", OracleDbType.Int64) { Value = (object?)dto.labelID ?? DBNull.Value },
-                new OracleParameter(":PONOID", OracleDbType.Int64) { Value = (object?)dto.PONOID ?? DBNull.Value },
-                new OracleParameter(":SupplierID", OracleDbType.Int64) { Value = (object?)dto.SupplierID ?? DBNull.Value },
-                new OracleParameter(":WareHouseID", OracleDbType.Int64) { Value = (object?)dto.WareHouseID ?? DBNull.Value },
-                new OracleParameter(":GTIN", OracleDbType.Varchar2) { Value = (object?)dto.GTIN ?? DBNull.Value },
-                new OracleParameter(":Itemcode", OracleDbType.Varchar2) { Value = (object?)dto.Itemcode ?? DBNull.Value },
-                new OracleParameter(":SSCCNumber", OracleDbType.Varchar2) { Value = (object?)dto.SSCCNumber ?? DBNull.Value },
-                new OracleParameter(":Batchno", OracleDbType.Varchar2) { Value = (object?)dto.Batchno ?? DBNull.Value },
-                new OracleParameter(":MFGDate", OracleDbType.Date) { Value = (object?)dto.MFGDate ?? DBNull.Value },
-                new OracleParameter(":EXPDate", OracleDbType.Date) { Value = (object?)dto.EXPDate ?? DBNull.Value },
-                new OracleParameter(":BATCHNBOXQTY", OracleDbType.Decimal) { Value = (object?)dto.BATCHNBOXQTY ?? DBNull.Value },
-                new OracleParameter(":LabelCreatedate", OracleDbType.Date) { Value = (object?)dto.LabelCreatedate ?? DBNull.Value },
-               // new OracleParameter(":entrydate", OracleDbType.Date) { Value = (object?)dto.entrydate ?? DBNull.Value },
-                new OracleParameter(":entrydate", OracleDbType.Date) { Value = DateTime.Now  },
-                new OracleParameter(":CANCELLATIONDATE", OracleDbType.Date) { Value = (object?)dto.CANCELLATIONDATE ?? DBNull.Value },
-                new OracleParameter(":ISCANCEL", OracleDbType.Varchar2) { Value = (object?)dto.ISCANCEL ?? DBNull.Value }
+//            // further code to prepare parameters and execute the insert
+//            var parameters = new List<OracleParameter>
+//            {
+//                new OracleParameter(":labelID", OracleDbType.Int64) { Value = (object?)dto.labelID ?? DBNull.Value },
+//                new OracleParameter(":PONOID", OracleDbType.Int64) { Value = (object?)dto.PONOID ?? DBNull.Value },
+//                new OracleParameter(":SupplierID", OracleDbType.Int64) { Value = (object?)dto.SupplierID ?? DBNull.Value },
+//                new OracleParameter(":WareHouseID", OracleDbType.Int64) { Value = (object?)dto.WareHouseID ?? DBNull.Value },
+//                new OracleParameter(":GTIN", OracleDbType.Varchar2) { Value = (object?)dto.GTIN ?? DBNull.Value },
+//                new OracleParameter(":Itemcode", OracleDbType.Varchar2) { Value = (object?)dto.Itemcode ?? DBNull.Value },
+//                new OracleParameter(":SSCCNumber", OracleDbType.Varchar2) { Value = (object?)dto.SSCCNumber ?? DBNull.Value },
+//                new OracleParameter(":Batchno", OracleDbType.Varchar2) { Value = (object?)dto.Batchno ?? DBNull.Value },
+//                new OracleParameter(":MFGDate", OracleDbType.Date) { Value = (object?)dto.MFGDate ?? DBNull.Value },
+//                new OracleParameter(":EXPDate", OracleDbType.Date) { Value = (object?)dto.EXPDate ?? DBNull.Value },
+//                new OracleParameter(":BATCHNBOXQTY", OracleDbType.Decimal) { Value = (object?)dto.BATCHNBOXQTY ?? DBNull.Value },
+//                new OracleParameter(":LabelCreatedate", OracleDbType.Date) { Value = (object?)dto.LabelCreatedate ?? DBNull.Value },
+//               // new OracleParameter(":entrydate", OracleDbType.Date) { Value = (object?)dto.entrydate ?? DBNull.Value },
+//                new OracleParameter(":entrydate", OracleDbType.Date) { Value = DateTime.Now  },
+//                new OracleParameter(":CANCELLATIONDATE", OracleDbType.Date) { Value = (object?)dto.CANCELLATIONDATE ?? DBNull.Value },
+//                new OracleParameter(":ISCANCEL", OracleDbType.Varchar2) { Value = (object?)dto.ISCANCEL ?? DBNull.Value }
 
-                //entrydate  set to current date 
+//                //entrydate  set to current date 
                 
 
-            };
-            // Execute the insert command
-            await _context.Database.ExecuteSqlRawAsync(sql, parameters.ToArray());
-            return Ok("Data inserted successfully.");
+//            };
+//            // Execute the insert command
+//            await _context.Database.ExecuteSqlRawAsync(sql, parameters.ToArray());
+//            return Ok("Data inserted successfully.");
 
 
-        }
+//        }
 
 
 
