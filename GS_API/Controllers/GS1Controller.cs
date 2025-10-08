@@ -123,6 +123,107 @@ order by mc.mcid,m.itemcode
 
         }
 
+
+        [HttpGet("SupplierCompanyType")]
+        public async Task<ActionResult<IEnumerable<SupplierMasterDTO>>> SupplierCompanyType(Int32 supplierId,string companyType)
+        {
+            string whSupplierId = "";
+            string whCompanyType = "";
+
+
+            if (supplierId != 0)
+            {
+                whSupplierId = " and supplierid = " + supplierId + " ";
+            }
+
+            if (companyType != "0" )
+            {
+                if (companyType.ToUpper() == "DASH")
+                {
+                    whCompanyType = " and ISLABELPRINTTYPE='DASH' ";
+                }   
+                   
+            }
+
+            string qry = @"  select supplierid,suppliername,address1||''||address2||''||address3||''||city||'' as address from massuppliers 
+                     where isactive = 1
+                    " + whSupplierId + @"
+                    " + whCompanyType + @"
+                    order by suppliername
+
+            ";
+
+            var myList = _context.SupplierMasterDbSet
+           .FromSqlInterpolated(FormattableStringFactory.Create(qry)).ToList();
+
+            return myList;
+
+        }
+
+
+        [HttpGet("PODetailsDash")]
+        public async Task<ActionResult<IEnumerable<SuplierDTO>>> PODetailsDash(Int32 supplierId, string companyType)
+        {
+            string whSupplierId = "";
+            string whCompanyType = "";
+
+            if (supplierId != 0)
+            {
+                whSupplierId = " and op.supplierid = " + supplierId + " ";
+            }
+
+            if (companyType != "0")
+            {
+                if (companyType.ToUpper() == "DASH")
+                {
+                    whCompanyType = " and ISLABELPRINTTYPE='DASH' ";
+                }
+
+            }
+
+            string qry = @" select itemcode,itemname,supplierid,ponoid,pono,podate,pipelineQTY as pipelinepoqty, warehousename,warehouseid from (
+
+select  m.itemcode,m.itemname,OI.itemid,op.supplierid,op.ponoid,op.pono,op.soissuedate podate,w.warehouseid,w.warehousename,op.extendeddate,sum(soi.ABSQTY) as absqty,nvl(rec.receiptabsqty,0)receiptabsqty,
+receiptdelayexception ,round(sysdate-op.soissuedate,0) as days,
+case when m.nablreq = 'Y' and  round(sysdate-op.soissuedate,0) <= 150 then sum(soi.ABSQTY)-nvl(rec.receiptabsqty,0)
+else case when m.ISSTERILITY = 'Y' and  round(sysdate-op.soissuedate,0) <= 100 then sum(soi.ABSQTY)-nvl(rec.receiptabsqty,0)
+else case when op.extendeddate is null and round(sysdate-op.soissuedate,0) <= 90 then sum(soi.ABSQTY)-nvl(rec.receiptabsqty,0) 
+else case when op.receiptdelayexception = 1 and sysdate <= op.extendeddate+1 then  sum(soi.ABSQTY)-nvl(rec.receiptabsqty,0) 
+else case when op.extendeddate is not null and op.receiptdelayexception = 1 and  (op.extendeddate+1) <= op.soissuedate and round(sysdate-op.soissuedate,0) <= 90 then sum(soi.ABSQTY)-nvl(rec.receiptabsqty,0) else 0 end end end end end as pipelineQTY
+from   soOrderPlaced OP  
+inner join massuppliers  s on s.supplierid=OP.supplierid
+inner join SoOrderedItems OI on OI.PoNoID=OP.PoNoID
+inner join soorderdistribution soi on soi.orderitemid=OI.orderitemid
+inner join masitems m on m.itemid = oi.itemid
+inner join maswarehouses w on w.warehouseid = soi.warehouseid
+left outer join 
+(
+select tr.ponoid,tri.itemid,sum(tri.receiptabsqty) receiptabsqty from tbreceipts tr 
+inner join tbreceiptitems tri on tri.receiptid=tr.receiptid 
+where tr.receipttype='NO' and tr.status='C' and tr.notindpdmis is null and tri.notindpdmis is null
+group by tr.ponoid,tri.itemid
+) rec on rec.ponoid=OP.PoNoID and rec.itemid=OI.itemid 
+ where op.status  in ('C','O') " + whSupplierId + @" "+ whCompanyType + @"
+ group by m.itemcode,m.itemname,m.nablreq,m.ISSTERILITY,op.ponoid,op.pono,w.warehouseid,w.warehousename,op.soissuedate,op.extendeddate,OI.itemid ,rec.receiptabsqty,
+ op.soissuedate,op.extendeddate ,receiptdelayexception,op.supplierid  
+ having (case when m.nablreq = 'Y' and  round(sysdate-op.soissuedate,0) <= 150 then sum(soi.ABSQTY)-nvl(rec.receiptabsqty,0)
+ else case when m.ISSTERILITY = 'Y' and  round(sysdate-op.soissuedate,0) <= 100 then sum(soi.ABSQTY)-nvl(rec.receiptabsqty,0)
+else case when op.extendeddate is null and round(sysdate-op.soissuedate,0) <= 90 then sum(soi.ABSQTY)-nvl(rec.receiptabsqty,0) 
+else case when op.receiptdelayexception = 1 and sysdate <= op.extendeddate+1 then  sum(soi.ABSQTY)-nvl(rec.receiptabsqty,0) 
+else case when op.extendeddate is not null and op.receiptdelayexception = 1 and  (op.extendeddate+1) <= op.soissuedate 
+and round(sysdate-op.soissuedate,0) <= 90 then sum(soi.ABSQTY)-nvl(rec.receiptabsqty,0) else 0 end end end end end) >0
+)
+order by itemcode,podate
+
+ ";
+            var myList = _context.SuplierDbSet
+           .FromSqlInterpolated(FormattableStringFactory.Create(qry)).ToList();
+
+            return myList;
+
+        }
+
+
         [HttpGet("WarehouseMaster")]
         public async Task<ActionResult<IEnumerable<WarehouseMasterDTO>>> WarehouseMaster(Int32 warehouseid)
         {
@@ -140,6 +241,8 @@ order by mc.mcid,m.itemcode
             return myList;
 
         }
+
+
 
 
 
@@ -173,6 +276,8 @@ order by mc.mcid,m.itemcode
 
             return myList;
         }
+
+
 
 
 
@@ -236,23 +341,88 @@ order by mc.mcid,m.itemcode
                     throw new FormatException($"Invalid date: '{s}'. Expected one of: {string.Join(", ", formats)}");
                 }
 
-                var entities = rows.Select(r => new GS1MASTERRECEIPTModel
+                // Gather all SSCCs from payload (non-null, non-empty)
+                var incomingSsccs = rows
+                    .Select(r => r.sscc?.Trim())
+                    .Where(s => !string.IsNullOrEmpty(s))
+                    .Distinct()
+                    .ToList();
+
+                // Query existing SSCCs from DB
+                var existingSsccs = await _context.GS1MASTERRECEIPTModelDbSet
+                    .Where(e => incomingSsccs.Contains(e.SSCC))
+                    .Select(e => e.SSCC)
+                    .ToListAsync();
+
+                // Track duplicates in payload
+                var seenInPayload = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+                // Filter rows: skip if SSCC is duplicate in payload or already exists in DB
+                var toInsert = new List<GS1MASTERRECEIPTModel>();
+                var skipped = new List<object>();
+
+                foreach (var r in rows)
                 {
-                    GSRID = 0, // let DB generate
-                    PONOID = r.ponoid,
-                    ITEMCODE = r.itemcode,
-                    SUPPLIERID = r.supplierid,
-                    BATCHNO = r.batchno,
-                    MFGDATE = Parse(r.mfgdate),
-                    EXPDATE = Parse(r.expdate),
-                    BATCHQTY = r.batchqty,
-                    WAREHOUSEID = r.warehouseid,
-                    ENTRYDATE = Parse(r.entrydate) ?? DateTime.UtcNow.Date,
-                    SSCC = r.sscc
-                }).ToList();
+                    var sscc = r.sscc?.Trim();
+                    if (string.IsNullOrEmpty(sscc))
+                    {
+                        toInsert.Add(new GS1MASTERRECEIPTModel
+                        {
+                            GSRID = 0,
+                            PONOID = r.ponoid,
+                            ITEMCODE = r.itemcode,
+                            SUPPLIERID = r.supplierid,
+                            BATCHNO = r.batchno,
+                            MFGDATE = Parse(r.mfgdate),
+                            EXPDATE = Parse(r.expdate),
+                            BATCHQTY = r.batchqty,
+                            WAREHOUSEID = r.warehouseid,
+                            ENTRYDATE = Parse(r.entrydate) ?? DateTime.UtcNow.Date,
+                            SSCC = null
+                        });
+                        continue; // allow blank SSCCs
+                    }
+
+                    if (!seenInPayload.Add(sscc))
+                    {
+                        skipped.Add(new { sscc, reason = "Duplicate in payload" });
+                        continue;
+                    }
+
+                    if (existingSsccs.Contains(sscc))
+                    {
+                        skipped.Add(new { sscc, reason = "Already exists in DB" });
+                        continue;
+                    }
+
+                    toInsert.Add(new GS1MASTERRECEIPTModel
+                    {
+                        GSRID = 0,
+                        PONOID = r.ponoid,
+                        ITEMCODE = r.itemcode,
+                        SUPPLIERID = r.supplierid,
+                        BATCHNO = r.batchno,
+                        MFGDATE = Parse(r.mfgdate),
+                        EXPDATE = Parse(r.expdate),
+                        BATCHQTY = r.batchqty,
+                        WAREHOUSEID = r.warehouseid,
+                        ENTRYDATE = Parse(r.entrydate) ?? DateTime.UtcNow.Date,
+                        SSCC = sscc
+                    });
+                }
+
+                if (toInsert.Count == 0)
+                {
+                    return Ok(new
+                    {
+                        inserted = 0,
+                        skippedCount = skipped.Count,
+                        skipped
+                    });
+                }
 
                 using var tx = await _context.Database.BeginTransactionAsync();
-                await _context.GS1MASTERRECEIPTModelDbSet.AddRangeAsync(entities);
+                await _context.GS1MASTERRECEIPTModelDbSet.AddRangeAsync(toInsert);
                 var inserted = await _context.SaveChangesAsync();
                 await tx.CommitAsync();
 
@@ -260,7 +430,9 @@ order by mc.mcid,m.itemcode
                 {
                     message = $"Inserted {inserted} row(s).",
                     inserted,
-                    ids = entities.Select(e => e.GSRID).ToList()
+                    ids = toInsert.Select(e => e.GSRID).ToList(),
+                    skippedCount = skipped.Count,
+                    skipped
                 });
             }
             catch (DbUpdateException ex)
@@ -273,6 +445,141 @@ order by mc.mcid,m.itemcode
             }
         }
 
+
+        [HttpPost("GsDataDTOMasterDash")]
+        public async Task<IActionResult> GsDataDTOMasterDash([FromBody] List<GS1MasterReceiptInputDto> rows)
+        {
+            if (rows == null || rows.Count == 0)
+                return BadRequest("At least one row is required.");
+
+            try
+            {
+                _context.ChangeTracker.Clear();
+
+                // Accept these common formats; add/remove as needed
+                string[] formats =
+                {
+                    "yyyy-MM-dd", "dd-MM-yyyy", "dd/MM/yyyy",
+                    "yyyy/MM/dd", "yyyy-MM-ddTHH:mm:ss", "yyyy-MM-ddTHH:mm:ss.fff"
+                };
+
+                DateTime? Parse(string? s)
+                {
+                    if (string.IsNullOrWhiteSpace(s)) return null;
+                    if (DateTime.TryParseExact(s, formats, CultureInfo.InvariantCulture,
+                                               DateTimeStyles.None, out var dt))
+                        return dt.Date;
+                    // fallback: general parse
+                    if (DateTime.TryParse(s, CultureInfo.InvariantCulture, DateTimeStyles.None, out dt))
+                        return dt.Date;
+                    throw new FormatException($"Invalid date: '{s}'. Expected one of: {string.Join(", ", formats)}");
+                }
+
+                // Gather all SSCCs from payload (non-null, non-empty)
+                var incomingSsccs = rows
+                    .Select(r => r.sscc?.Trim())
+                    .Where(s => !string.IsNullOrEmpty(s))
+                    .Distinct()
+                    .ToList();
+
+                // Query existing SSCCs from DB
+                var existingSsccs = await _context.GS1MASTERRECEIPTModelDbSet
+                    .Where(e => incomingSsccs.Contains(e.SSCC))
+                    .Select(e => e.SSCC)
+                    .ToListAsync();
+
+                // Track duplicates in payload
+                var seenInPayload = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+                // Filter rows: skip if SSCC is duplicate in payload or already exists in DB
+                var toInsert = new List<GS1MASTERRECEIPTModel>();
+                var skipped = new List<object>();
+
+                foreach (var r in rows)
+                {
+                    var sscc = r.sscc?.Trim();
+                    if (string.IsNullOrEmpty(sscc))
+                    {
+                        toInsert.Add(new GS1MASTERRECEIPTModel
+                        {
+                            GSRID = 0,
+                            PONOID = r.ponoid,
+                            ITEMCODE = r.itemcode,
+                            SUPPLIERID = r.supplierid,
+                            BATCHNO = r.batchno,
+                            MFGDATE = Parse(r.mfgdate),
+                            EXPDATE = Parse(r.expdate),
+                            BATCHQTY = r.batchqty,
+                            WAREHOUSEID = r.warehouseid,
+                            ENTRYDATE = Parse(r.entrydate) ?? DateTime.UtcNow.Date,
+                            SSCC = null,
+                            VENDERTYPE = "dash" // <-- Set hardcoded value
+                        });
+                        continue;
+                    }
+
+                    if (!seenInPayload.Add(sscc))
+                    {
+                        skipped.Add(new { sscc, reason = "Duplicate in payload" });
+                        continue;
+                    }
+
+                    if (existingSsccs.Contains(sscc))
+                    {
+                        skipped.Add(new { sscc, reason = "Already exists in DB" });
+                        continue;
+                    }
+
+                    toInsert.Add(new GS1MASTERRECEIPTModel
+                    {
+                        GSRID = 0,
+                        PONOID = r.ponoid,
+                        ITEMCODE = r.itemcode,
+                        SUPPLIERID = r.supplierid,
+                        BATCHNO = r.batchno,
+                        MFGDATE = Parse(r.mfgdate),
+                        EXPDATE = Parse(r.expdate),
+                        BATCHQTY = r.batchqty,
+                        WAREHOUSEID = r.warehouseid,
+                        ENTRYDATE = Parse(r.entrydate) ?? DateTime.UtcNow.Date,
+                        SSCC = sscc,
+                        VENDERTYPE = "dash" // <-- Set hardcoded value
+                    });
+                }
+
+                if (toInsert.Count == 0)
+                {
+                    return Ok(new
+                    {
+                        inserted = 0,
+                        skippedCount = skipped.Count,
+                        skipped
+                    });
+                }
+
+                using var tx = await _context.Database.BeginTransactionAsync();
+                await _context.GS1MASTERRECEIPTModelDbSet.AddRangeAsync(toInsert);
+                var inserted = await _context.SaveChangesAsync();
+                await tx.CommitAsync();
+
+                return Ok(new
+                {
+                    message = $"Inserted {inserted} row(s).",
+                    inserted,
+                    ids = toInsert.Select(e => e.GSRID).ToList(),
+                    skippedCount = skipped.Count,
+                    skipped
+                });
+            }
+            catch (DbUpdateException ex)
+            {
+                return BadRequest($"Failed to insert: {ex.GetBaseException().Message}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Failed to insert: {ex.Message}");
+            }
+        }
 
 
         [HttpGet("WHStock")]

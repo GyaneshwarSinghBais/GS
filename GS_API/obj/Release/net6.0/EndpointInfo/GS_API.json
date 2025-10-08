@@ -405,7 +405,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/GS1MasterReceiptInputDto"
+                  "$ref": "#/components/schemas/GS1MasterReceiptInputDashDto"
                 }
               }
             },
@@ -413,7 +413,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/GS1MasterReceiptInputDto"
+                  "$ref": "#/components/schemas/GS1MasterReceiptInputDashDto"
                 }
               }
             },
@@ -421,7 +421,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/GS1MasterReceiptInputDto"
+                  "$ref": "#/components/schemas/GS1MasterReceiptInputDashDto"
                 }
               }
             }
@@ -602,6 +602,56 @@
   },
   "components": {
     "schemas": {
+      "GS1MasterReceiptInputDashDto": {
+        "type": "object",
+        "properties": {
+          "gsrid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ponoid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "itemcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "supplierid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "batchno": {
+            "type": "string",
+            "nullable": true
+          },
+          "mfgdate": {
+            "type": "string",
+            "nullable": true
+          },
+          "expdate": {
+            "type": "string",
+            "nullable": true
+          },
+          "batchqty": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "warehouseid": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "entrydate": {
+            "type": "string",
+            "nullable": true
+          },
+          "sscc": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "GS1MasterReceiptInputDto": {
         "type": "object",
         "properties": {

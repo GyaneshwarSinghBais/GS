@@ -21,6 +21,7 @@ namespace GS_API.Data
 
         public DbSet<GS1MASTERRECEIPTModel> GS1MASTERRECEIPTModelDbSet { get; set; }
 
+      //  public DbSet<GS1MASTERRECEIPTDASHModel> GS1MASTERRECEIPTDASHModelDbSet { get; set; }
 
         public DbSet<GsDataDTO> GsDataDTODbSet { get; set; }
 
@@ -29,30 +30,7 @@ namespace GS_API.Data
 
         public DbSet<Gs1LabelDTO> Gs1LabelDbSet { get; set; }
         public DbSet<UpdateCancellationRequest> UpdateCancellationRequestDbSet { get; set; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //public DbSet<GS1MASTERRECEIPTBase> GS1MASTERRECEIPTDbSet { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -63,25 +41,14 @@ namespace GS_API.Data
             modelBuilder.Entity<Gs1LabelDTO>().HasNoKey();
             modelBuilder.Entity<UpdateCancellationRequest>().HasNoKey();
 
-
-            // modelBuilder.Entity<GS1MASTERRECEIPTModel>().HasNoKey();
-
-
-
-
-
-
-
-            //  modelBuilder.Entity<MasCgmscNocItems>().ToTable("MasCgmscNocItems");
-
-
             modelBuilder.Entity<GS1MASTERRECEIPTModel>()
-    .Property(p => p.GSRID)
-    .ValueGeneratedOnAdd();
+                .Property(p => p.GSRID)
+                .ValueGeneratedOnAdd();
 
-
+            //modelBuilder.Entity<GS1MASTERRECEIPTBase>()
+            //    .HasDiscriminator<string>("VENDERTYPE")
+            //    .HasValue<GS1MASTERRECEIPTModel>(null)
+            //    .HasValue<GS1MASTERRECEIPTDASHModel>("dash");
         }
     }
-
-
 }

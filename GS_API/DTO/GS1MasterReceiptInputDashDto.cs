@@ -1,6 +1,13 @@
-﻿namespace GS_API.DTO
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace GS_API.DTO
 {
-    public class GS1MasterReceiptInputDto
+
+    //[Table("GS1MASTERRECEIPT")]
+    public class GS1MasterReceiptInputDashDto
     {
         public long gsrid { get; set; }         // will be 0 from client
         public long ponoid { get; set; }
@@ -13,6 +20,7 @@
         public long warehouseid { get; set; }
         public string? entrydate { get; set; }   // string in JSON
         public string? sscc { get; set; }
-        public string? vendortype { get; set; }
+        //public string? VendorType { get; set; }
+
     }
 }

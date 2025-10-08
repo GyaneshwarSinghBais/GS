@@ -5,9 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GS_API.DTO
 {
-
-    [Table("GS1MASTERRECEIPT")]
-    public class GS1MASTERRECEIPTModel
+    //[Table("GS1MASTERRECEIPT")]
+    public class GS1MASTERRECEIPTDASHModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -18,6 +17,7 @@ namespace GS_API.DTO
         public long SUPPLIERID { get; set; }
         public string? BATCHNO { get; set; }
 
+        // <-- switch these to DateTime? so EF sends DATEs to Oracle
         public DateTime? MFGDATE { get; set; }
         public DateTime? EXPDATE { get; set; }
 
@@ -28,5 +28,4 @@ namespace GS_API.DTO
         public string? SSCC { get; set; }
         public string? VENDERTYPE { get; set; }
     }
-
 }
